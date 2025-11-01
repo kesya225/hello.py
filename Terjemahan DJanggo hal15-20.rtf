@@ -1,0 +1,681 @@
+{\rtf1\fbidis\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Calibri;}{\f2\fnil\fcharset1 Segoe UI Emoji;}{\f3\fnil\fcharset1 Segoe UI Symbol;}{\f4\fnil\fcharset1 Cambria Math;}{\f5\fnil\fcharset0 Cambria Math;}{\f6\fnil Cambria Math;}{\f7\fnil\fcharset1 Segoe UI Symbol;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont4\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9 2.2.2 Menyiapkan Database\par
+\par
+Langkah ini hanya perlu dilakukan jika kamu ingin menggunakan mesin database besar seperti:\par
+\par
+PostgreSQL\par
+\par
+MariaDB\par
+\par
+MySQL\par
+\par
+Oracle\par
+\par
+Secara default, Django sudah menggunakan SQLite, yang tidak perlu instalasi tambahan \f1\emdash  cocok untuk proyek kecil atau tahap pengembangan.\par
+\par
+Namun, jika kamu ingin menggunakan database lain (seperti MySQL atau PostgreSQL), kamu harus menginstalnya secara terpisah dan mengatur koneksinya di pengaturan Django (DATABASES) nanti.\par
+\par
+2.2.3 Menginstal Django\par
+\par
+Ada tiga cara utama untuk menginstal Django:\par
+\par
+Instal rilis resmi (disarankan untuk sebagian besar pengguna):\par
+\par
+pip install Django\par
+\par
+\par
+Ini akan menginstal versi stabil terbaru dari Django.\par
+\par
+Instal Django dari paket bawaan sistem operasi:\par
+\par
+Contoh (untuk Ubuntu/Debian):\par
+\par
+sudo apt install python3-django\par
+\par
+\par
+Tapi, versi ini mungkin bukan yang paling baru.\par
+\par
+Instal versi pengembangan terbaru (untuk pengguna tingkat lanjut):\par
+\par
+pip install git+https://github.com/django/django.git@main\par
+\par
+\par
+Ini akan menginstal versi terbaru langsung dari GitHub, yang mungkin punya fitur baru tapi juga bisa memiliki bug.\par
+\par
+\f2\u9888?\u-497?\f1  \f0 Selalu pastikan dokumentasi yang kamu baca sesuai dengan versi Django yang kamu gunakan.\par
+Fitur yang ditandai sebagai \f1\ldblquote\f0 new in development version\f1\rdblquote  \f0 hanya tersedia di versi pengembangan dan belum tentu bisa digunakan di versi stabil.\par
+\par
+\par
+\par
+Tujuan Proyek Django Pertama\par
+\par
+Dalam tutorial ini, kamu akan membuat dua bagian utama dari aplikasi:\par
+\par
+\f3\u-10180?\u-8432?\f1  \f0 Situs publik yang memungkinkan orang untuk melihat polling (jajak pendapat) dan memberikan suara.\par
+\par
+\f2\u9881?\u-497?\f1  \f0 Situs admin yang memungkinkan kamu menambahkan, mengubah, dan menghapus polling.\par
+\par
+Memastikan Django Sudah Terinstal\par
+\par
+Kita berasumsi bahwa Django sudah terinstal di sistemmu.\par
+Untuk mengeceknya dan melihat versi Django yang kamu gunakan, jalankan perintah berikut di terminal (tanda $ menunjukkan perintah di shell):\par
+\par
+$ python -m django --version\par
+\par
+\par
+Jika Django terinstal, maka akan muncul nomor versi, misalnya:\par
+\par
+5.2\par
+\par
+\par
+Jika belum terinstal, kamu akan melihat pesan error:\par
+\par
+No module named django\par
+\par
+Versi yang Digunakan\par
+\par
+Tutorial ini dibuat untuk Django versi 5.2, yang mendukung Python 3.10 dan versi yang lebih baru.\par
+\par
+Jika versi Django kamu tidak cocok, buka tutorial sesuai versi Django-mu dengan menggunakan \f1\ldblquote\f0 version switcher\f1\rdblquote  \f0 di pojok kanan bawah halaman dokumentasi resmi.\par
+\par
+Atau kamu bisa memperbarui Django ke versi terbaru:\par
+\par
+pip install --upgrade Django\par
+\par
+\par
+Jika kamu menggunakan versi Python yang lebih lama, lihat bagian dokumentasi \f1\ldblquote\f0 What Python version can I use with Django?\f1\rdblquote  \f0 untuk mengetahui versi Django yang kompatibel.\par
+\par
+\f3\u-10179?\u-9002?\f1  \f0 Jika Butuh Bantuan\par
+\par
+Jika kamu mengalami kesulitan mengikuti tutorial ini, buka bagian \f1\ldblquote\f0 Getting Help\f1\rdblquote  \f0 di FAQ (Frequently Asked Questions) Django.\par
+Di sana terdapat panduan, tautan komunitas, dan forum untuk bertanya.\par
+\par
+2.3.1 Membuat Proyek Django\par
+\par
+Jika ini adalah pertama kalinya kamu menggunakan Django, kamu perlu melakukan setup awal.\par
+Langkah ini akan menghasilkan kode otomatis yang membuat proyek Django, yaitu sekumpulan pengaturan konfigurasi untuk:\par
+\par
+Database\par
+\par
+Opsi khusus Django\par
+\par
+Pengaturan khusus aplikasi\par
+\par
+Langkah-langkah Membuat Proyek\par
+\par
+Buka terminal (Command Prompt / PowerShell).\par
+\par
+Pindah ke folder tempat kamu ingin menyimpan kode, misalnya:\par
+\par
+cd Documents\par
+\par
+\par
+Buat folder baru untuk menyimpan proyek:\par
+\par
+mkdir djangotutorial\par
+\par
+\par
+Masuk ke folder tersebut:\par
+\par
+cd djangotutorial\par
+\par
+\par
+Buat proyek Django baru dengan nama mysite:\par
+\par
+django-admin startproject mysite djangotutorial\par
+\par
+\par
+Perintah ini akan membuat proyek bernama mysite di dalam folder djangotutorial.\par
+\par
+Jika perintah tidak berfungsi, lihat bagian dokumentasi \f1\ldblquote\f0 Problems running django-admin\f1\rdblquote  \f0 untuk solusi.\par
+\par
+\f2\u9888?\u-497?\f1  \f0 Catatan Penting\par
+\par
+Hindari memberi nama proyek dengan nama yang sama seperti modul bawaan Python atau Django.\par
+Contoh nama yang tidak boleh digunakan:\par
+\par
+django \f4\u8594?\f1  \f0 akan bentrok dengan framework Django sendiri.\par
+\par
+test \f4\u8594?\f1  \f0 akan bentrok dengan modul Python bawaan.\par
+\par
+\par
+Setelah\f5  \f0 kamu\f5  \f0 menjalankan\f5  \f0 perintah\f5 :\f0\par
+\par
+django\f5 -\f0 admin\f5  \f0 startproject\f5  \f0 mysite\f5  \f0 djangotutorial\par
+\par
+\par
+Struktur\f5  \f0 folder\f5  \f0 yang\f5  \f0 dibuat\f5  \f0 akan\f5  \f0 terlihat\f5  \f0 seperti\f5  \f0 ini\f5 :\f0\par
+\par
+djangotutorial\f5 /\f0\par
+\f5     \f0 manage\f5 .\f0 py\par
+\f5     \f0 mysite\f5 /\f0\par
+\f5         __\f0 init\f5 __.\f0 py\par
+\f5         \f0 settings\f5 .\f0 py\par
+\f5         \f0 urls\f5 .\f0 py\par
+\f5         \f0 asgi\f5 .\f0 py\par
+\f5         \f0 wsgi\f5 .\f0 py\par
+\par
+Penjelasan\f5  \f0 isi\f5  \f0 tiap\f5  \f0 file\f5  \f0 dan\f5  \f0 folder\f5 :\f0\par
+\f3\u-10179?\u-9023?\f6  \f0 manage\f5 .\f0 py\par
+\par
+Sebuah\f5  \f0 alat\f5  \f0 bantu\f5  \f0 command\f5 -\f0 line\f5  (\f0 perintah\f5  \f0 terminal\f5 ) \f0 untuk\f5  \f0 berinteraksi\f5  \f0 dengan\f5  \f0 proyek\f5  \f0 Django\f5 .\f0\par
+\par
+Contohnya\f5 , \f0 kamu\f5  \f0 bisa\f5  \f0 menjalankan\f5  \f0 server\f5 , \f0 membuat\f5  \f0 aplikasi\f5 , \f0 atau\f5  \f0 melakukan\f5  \f0 migrasi\f5  \f0 database\f5  \f0 menggunakan\f5  \f0 file\f5  \f0 ini\f5 .\f0\par
+\par
+Dokumentasi\f5  \f0 lengkapnya\f5  \f0 bisa\f5  \f0 dibaca\f5  \f0 di\f5  \f0 bagian\f5  \f1\ldblquote\f0 django\f5 -\f0 admin\f5  \f0 and\f5  \f0 manage\f5 .\f0 py\f1\rdblquote\f6  \f0 pada\f5  \f0 situs\f5  \f0 Django\f5  \f0 resmi\f5 .\f0\par
+\par
+\f3\u-10179?\u-9023?\f6  \f0 mysite\f5 /\f0\par
+\par
+Ini\f5  \f0 adalah\f5  \f0 folder\f5  \f0 utama\f5  \f0 proyekmu\f5 , \f0 dan\f5  \f0 dianggap\f5  \f0 sebagai\f5  \f0 paket\f5  \f0 Python\f5 .\f0\par
+\par
+Nama\f5  \f0 folder\f5  \f0 ini\f5  (\f0 mysite\f5 ) \f0 juga\f5  \f0 menjadi\f5  \f0 nama\f5  \f0 paket\f5  \f0 Python\f5  \f0 yang\f5  \f0 digunakan\f5  \f0 untuk\f5  \f0 mengimpor\f5  \f0 modul\f5  \f0 lain\f5  \f0 di\f5  \f0 dalamnya\f5 .\f0\par
+Contoh\f5 :\f0\par
+\par
+import\f5  \f0 mysite\f5 .\f0 urls\par
+\par
+\f3\u-10179?\u-9020?\f6  \f0 mysite\f5 /__\f0 init\f5 __.\f0 py\par
+\par
+File\f5  \f0 kosong\f5  \f0 yang\f5  \f0 memberi\f5  \f0 tahu\f5  \f0 Python\f5  \f0 bahwa\f5  \f0 folder\f5  \f0 mysite\f5  \f0 adalah\f5  \f0 paket\f5  \f0 Python\f5 .\f0\par
+\par
+Tanpa\f5  \f0 file\f5  \f0 ini\f5 , \f0 Python\f5  \f0 tidak\f5  \f0 akan\f5  \f0 mengenali\f5  \f0 folder\f5  \f0 tersebut\f5  \f0 sebagai\f5  \f0 modul\f5  \f0 yang\f5  \f0 bisa\f5  \f0 di\f5 -\f0 import\f5 .\f0\par
+\par
+Jika\f5  \f0 kamu\f5  \f0 baru\f5  \f0 belajar\f5  \f0 Python\f5 , \f0 ini\f5  \f0 bisa\f5  \f0 kamu\f5  \f0 pelajari\f5  \f0 lebih\f5  \f0 lanjut\f5  \f0 di\f5  \f0 dokumentasi\f5  \f0 resmi\f5  \f0 Python\f5  \f0 bagian\f5  \f1\ldblquote\f0 Packages\f1\rdblquote\f5 .\f0\par
+\par
+\f2\u9881?\u-497?\f6  \f0 mysite\f5 /\f0 settings\f5 .\f0 py\par
+\par
+File\f5  \f0 ini\f5  \f0 berisi\f5  \f0 semua\f5  \f0 pengaturan\f5  \f0 dan\f5  \f0 konfigurasi\f5  \f0 proyek\f5  \f0 Django\f5 , \f0 seperti\f5 :\f0\par
+\par
+Database\f5  \f0 apa\f5  \f0 yang\f5  \f0 digunakan\par
+\par
+Aplikasi\f5  \f0 yang\f5  \f0 aktif\par
+\par
+Zona\f5  \f0 waktu\f5  (\f0 timezone\f5 )\f0\par
+\par
+Pengaturan\f5  \f0 keamanan\f5  (\f0 secret\f5  \f0 key\f5 , \f0 debug\f5 , \f0 dsb\f5 .)\f0\par
+\par
+\f3\u-10179?\u-9000?\f6  \f0 Lihat\f5  \f0 dokumentasi\f5 : \f1\ldblquote\f0 Django\f5  \f0 settings\f1\rdblquote\f6  \f0 untuk\f5  \f0 mempelajari\f5  \f0 lebih\f5  \f0 lanjut\f5 .\f0\par
+\par
+\f3\u-10180?\u-8432?\f6  \f0 mysite\f5 /\f0 urls\f5 .\f0 py\par
+\par
+File\f5  \f0 ini\f5  \f0 berfungsi\f5  \f0 sebagai\f5  \f0 peta\f5  \f0 URL\f5  \f0 untuk\f5  \f0 seluruh\f5  \f0 situs\f5  \f0 Django\f5 -\f0 mu\f5 .\f0\par
+\par
+Di\f5  \f0 sinilah\f5  \f0 kamu\f5  \f0 mendefinisikan\f5  \f0 URL\f5  \f0 apa\f5  \f0 yang\f5  \f0 akan\f5  \f0 diarahkan\f5  \f0 ke\f5  \f0 view\f5  \f0 tertentu\f5 .\f0\par
+\par
+Ibaratnya\f5  \f0 seperti\f5  \f1\ldblquote\f0 daftar\f5  \f0 isi\f1\rdblquote\f6  \f0 untuk\f5  \f0 websitemu\f5 .\f0\par
+\par
+\f3\u-10179?\u-9000?\f6  \f0 Lihat\f5  \f0 dokumentasi\f5 : \f1\ldblquote\f0 URL\f5  \f0 dispatcher\f1\rdblquote\f5 .\f0\par
+\par
+\f7\u9889?\f6  \f0 mysite\f5 /\f0 asgi\f5 .\f0 py\par
+\par
+Titik\f5  \f0 masuk\f5  (\f0 entry\f5  \f0 point\f5 ) \f0 untuk\f5  \f0 server\f5  \f0 web\f5  \f0 ASGI\f5 -\f0 compatible\f5 .\f0\par
+\par
+Digunakan\f5  \f0 jika\f5  \f0 kamu\f5  \f0 ingin\f5  \f0 men\f5 -\f0 deploy\f5  \f0 Django\f5  \f0 dengan\f5  \f0 ASGI\f5  (\f0 misalnya\f5 , \f0 untuk\f5  \f0 aplikasi\f5  \f0 real\f5 -\f0 time\f5  \f0 atau\f5  \f0 async\f5 ).\f0\par
+\par
+\f3\u-10179?\u-9000?\f6  \f0 Lihat\f5 : \f1\ldblquote\f0 How\f5  \f0 to\f5  \f0 deploy\f5  \f0 with\f5  \f0 ASGI\f1\rdblquote\f5 .\f0\par
+\par
+\f3\u-10180?\u-8435?\f6  \f0 mysite\f5 /\f0 wsgi\f5 .\f0 py\par
+\par
+Titik\f5  \f0 masuk\f5  \f0 untuk\f5  \f0 server\f5  \f0 web\f5  \f0 WSGI\f5 -\f0 compatible\f5 , \f0 seperti\f5  \f0 Gunicorn\f5  \f0 atau\f5  \f0 mod\f5 _\f0 wsgi\f5 .\f0\par
+\par
+Umumnya\f5  \f0 digunakan\f5  \f0 saat\f5  \f0 men\f5 -\f0 deploy\f5  \f0 Django\f5  \f0 ke\f5  \f0 server\f5  \f0 produksi\f5  (\f0 production\f5  \f0 server\f5 ).\f0\par
+\par
+\f3\u-10179?\u-9000?\f6  \f0 Lihat\f5 : \f1\ldblquote\f0 How\f5  \f0 to\f5  \f0 deploy\f5  \f0 with\f5  \f0 WSGI\f1\rdblquote\f5 .\f0\par
+\par
+2\f5 .\f0 3\f5 .\f0 2\f5  \f0 Menjalankan\f5  \f0 Server\f5  \f0 Pengembangan\f5  \f0 Django\par
+\par
+Sekarang\f5 , \f0 mari\f5  \f0 kita\f5  \f0 memastikan\f5  \f0 proyek\f5  \f0 Django\f5  \f0 yang\f5  \f0 kamu\f5  \f0 buat\f5  \f0 tadi\f5  \f0 berjalan\f5  \f0 dengan\f5  \f0 baik\f5 .\f0\par
+\par
+Buka\f5  \f0 terminal\f5 , \f0 lalu\f5  \f0 masuk\f5  \f0 ke\f5  \f0 direktori\f5  \f0 proyek\f5 :\f0\par
+\par
+cd\f5  \f0 djangotutorial\par
+\par
+\par
+Jalankan\f5  \f0 server\f5  \f0 pengembangan\f5  \f0 Django\f5  \f0 dengan\f5  \f0 perintah\f5 :\f0\par
+\par
+python\f5  \f0 manage\f5 .\f0 py\f5  \f0 runserver\par
+\par
+\par
+Kamu\f5  \f0 akan\f5  \f0 melihat\f5  \f0 output\f5  \f0 seperti\f5  \f0 ini\f5  \f0 di\f5  \f0 terminal\f5 :\f0\par
+\par
+Performing\f5  \f0 system\f5  \f0 checks\f5 ...\f0\par
+\par
+\par
+Ini\f5  \f0 artinya\f5  \f0 Django\f5  \f0 sedang\f5  \f0 melakukan\f5  \f0 pemeriksaan\f5  \f0 sistem\f5  \f0 otomatis\f5  \f0 untuk\f5  \f0 memastikan\f5  \f0 tidak\f5  \f0 ada\f5  \f0 masalah\f5  \f0 pada\f5  \f0 proyekmu\f5 .\f0\par
+\par
+Jika\f5  \f0 tidak\f5  \f0 ada\f5  \f0 error\f5 , \f0 Django\f5  \f0 akan\f5  \f0 menampilkan\f5  \f0 pesan\f5  \f0 seperti\f5  \f0 ini\f5 :\f0\par
+\par
+Starting\f5  \f0 development\f5  \f0 server\f5  \f0 at\f5  \f0 http\f5 ://\f0 127\f5 .\f0 0\f5 .\f0 0\f5 .\f0 1\f5 :\f0 8000\f5 /\f0\par
+Quit\f5  \f0 the\f5  \f0 server\f5  \f0 with\f5  \f0 CONTROL\f5 -\f0 C\f5 .\f0\par
+\par
+\par
+Artinya\f5  \f0 server\f5  \f0 sudah\f5  \f0 berjalan\f5 , \f0 dan\f5  \f0 kamu\f5  \f0 bisa\f5  \f0 membuka\f5  \f0 web\f5  \f0 browser\f5 , \f0 lalu\f5  \f0 kunjungi\f5 :\f0\par
+\par
+http\f5 ://\f0 127\f5 .\f0 0\f5 .\f0 0\f5 .\f0 1\f5 :\f0 8000\f5 /\f0\par
+\par
+\par
+Kamu\f5  \f0 akan\f5  \f0 melihat\f5  \f0 halaman\f5  \f0 bertuliskan\f5 :\f0\par
+\par
+\f1\ldblquote\f0 The\f5  \f0 install\f5  \f0 worked\f5  \f0 successfully\f5 ! \f0 Congratulations\f5 !\f1\rdblquote\f0\par
+\par
+\f3\u-10180?\u-8311?\f6  \f0 Itu\f5  \f0 artinya\f5  \f0 proyek\f5  \f0 Django\f5  \f0 kamu\f5  \f0 berhasil\f5  \f0 dijalankan\f5 .\par
+\par
+Menjalankan Server Django (lanjutan dari 2.3.2)\par
+\par
+Ketika kamu menjalankan:\par
+\par
+python manage.py runserver\par
+\par
+\par
+Kamu akan melihat output seperti ini di terminal:\par
+\par
+System check identified no issues (0 silenced).\par
+You have unapplied migrations; your app may not work properly until they are applied.\par
+Run 'python manage.py migrate' to apply them.\par
+October 31, 2025 - 15:50:53\par
+Django version 5.2, using settings 'mysite.settings'\par
+Starting development server at {{\field{\*\fldinst{HYPERLINK http://127.0.0.1:8000/ }}{\fldrslt{http://127.0.0.1:8000/\ul0\cf0}}}}\f5\fs22\par
+Quit the server with CONTROL-C.\par
+WARNING: This is a development server. Do not use it in a production setting. Use a\par
+production WSGI or ASGI server instead.\par
+For more information on production servers see:\par
+{{\field{\*\fldinst{HYPERLINK https://docs.djangoproject.com/en/5.2/howto/deployment/ }}{\fldrslt{https://docs.djangoproject.com/en/5.2/howto/deployment/\ul0\cf0}}}}\f5\fs22\par
+\par
+Penjelasan setiap bagian:\par
+\par
+\f7\u9989?\f6  \ldblquote\f5 System check identified no issues\f6\rdblquote\f5\par
+Berarti Django sudah memeriksa sistem proyekmu dan tidak menemukan masalah.\par
+\par
+\f2\u9888?\u-497?\f6  \ldblquote\f5 You have unapplied migrations\f6\rdblquote\f5\par
+Artinya ada migrasi database yang belum dijalankan.\par
+Untuk menerapkannya nanti, kamu bisa menjalankan:\par
+\par
+python manage.py migrate\par
+\par
+\par
+Tapi untuk sekarang, abaikan dulu peringatan ini \f6\emdash  \f5 nanti akan dijelaskan di bagian database.\par
+\par
+\f3\u-10179?\u-8877?\f6  \f5 Tanggal & waktu\par
+Menunjukkan kapan server dijalankan.\par
+\par
+\f2\u-10178?\u-8736?\f6  \ldblquote\f5 Django version 5.2, using settings 'mysite.settings'\f6\rdblquote\f5\par
+Artinya server dijalankan dengan pengaturan proyekmu (settings.py).\par
+\par
+\f3\u-10180?\u-8432?\f6  \ldblquote\f5 Starting development server at http://127.0.0.1:8000/\f6\rdblquote\f5\par
+\par
+Ini alamat server lokal kamu.\par
+Buka browser, lalu masuk ke:\par
+\par
+http://127.0.0.1:8000/\par
+\par
+\par
+Kamu akan melihat halaman dengan pesan:\par
+\par
+\f3\u-10180?\u-8311?\f6  \ldblquote\f5 Congratulations!\f6\rdblquote  \f5 dan gambar roket meluncur.\par
+\par
+Itu artinya instalasi Django kamu berhasil dan berjalan dengan baik \f3\u-10179?\u-8576?\f5\par
+\par
+\f2\u9888?\u-497?\f6  \f5 Peringatan tentang \f6\ldblquote\f5 development server\f6\rdblquote\f5\par
+\par
+Django menyertakan server kecil bawaan berbasis Python murni agar kamu bisa mengembangkan proyek dengan cepat tanpa harus mengonfigurasi server besar seperti Apache atau Nginx.\par
+\par
+Namun, perhatikan:\par
+\par
+\f3\u-10179?\u-8533?\f6  \f5 Jangan gunakan server ini untuk produksi (production environment).\par
+Server ini hanya untuk pengembangan lokal (development).\par
+\par
+Untuk menjalankan di server nyata nanti, kamu perlu WSGI atau ASGI server, seperti:\par
+\par
+Gunicorn\par
+\par
+Daphne\par
+\par
+Uvicorn\par
+\par
+\f3\u-10179?\u-9000?\f6  \f5 Referensi resmi:\par
+https://docs.djangoproject.com/en/5.2/howto/deployment/\par
+\par
+\f2\u9881?\u-497?\f6  \f5 Fitur \f6\ldblquote\f5 Automatic Reloading\f6\rdblquote\f5\par
+\par
+Server pengembangan Django punya fitur auto-reload:\par
+\par
+Setiap kali kamu mengubah kode Python, server akan memuat ulang otomatis tanpa harus kamu restart.\par
+\par
+Namun, jika kamu menambahkan file baru (misalnya file .py baru), terkadang kamu perlu restart server secara manual agar perubahan dikenali.\par
+\par
+2.3.3 Membuat Aplikasi \f6\ldblquote\f5 Polls\f6\rdblquote\f5\par
+\par
+Sekarang, setelah proyek utama (project) Django kamu siap, kita akan mulai membuat aplikasi pertama.\par
+\par
+\f3\u-10179?\u-8903?\f6  \f5 Di Django, \f6\ldblquote\f5 project\f6\rdblquote  \f5 adalah keseluruhan situs web.\par
+\f3\u-10179?\u-8903?\f6  \f5 Sedangkan \f6\ldblquote\f5 app\f6\rdblquote  \f5 adalah bagian kecil dari situs yang punya fungsi tertentu (misalnya fitur polling, blog, atau login).\par
+\par
+Struktur Aplikasi di Django\par
+\par
+Setiap aplikasi adalah sebuah paket Python dengan struktur tertentu.\par
+Untungnya, Django menyediakan alat otomatis untuk membuatnya, jadi kamu tidak perlu membuat folder satu per satu.\par
+\par
+Untuk membuat aplikasi baru bernama polls, jalankan perintah ini di terminal:\par
+\par
+python manage.py startapp polls\par
+\par
+\par
+Perintah ini akan membuat struktur dasar seperti berikut:\par
+\par
+polls/\par
+    __init__.py\par
+    admin.py\par
+    apps.py\par
+    migrations/\par
+        __init__.py\par
+    models.py\par
+    tests.py\par
+    views.py\par
+\par
+Berikut **terjemahan lengkap dan penjelasan dalam Bahasa Indonesia** \f3\u-10179?\u-9145?\f5\par
+\par
+---\par
+\par
+## **\f3\u-10179?\u-8986?\f6  \f5 Perbedaan antara \f6\ldblquote\f5 Project\f6\rdblquote  \f5 dan \f6\ldblquote\f5 App\f6\rdblquote  \f5 di Django**\par
+\par
+### \f3\u-10179?\u-8903?\f6  \f5 **Apa itu \f6\ldblquote\f5 App\f6\rdblquote\f5 ?**\par
+\par
+Sebuah **app (aplikasi)** adalah **komponen web** yang menjalankan fungsi tertentu.\par
+Contohnya:\par
+\par
+* Sistem blog\par
+* Basis data catatan publik\par
+* Aplikasi polling sederhana (seperti yang akan kita buat)\par
+\par
+App biasanya berfokus pada **satu fungsi atau fitur utama** dalam proyek web.\par
+\par
+---\par
+\par
+### \f3\u-10179?\u-8903?\f6  \f5 **Apa itu \f6\ldblquote\f5 Project\f6\rdblquote\f5 ?**\par
+\par
+Sebuah **project** adalah **keseluruhan situs web Django**, yang mencakup:\par
+\par
+* **Konfigurasi global** (seperti database, keamanan, middleware, dll.)\par
+* Satu atau lebih **app** di dalamnya\par
+\par
+Artinya:\par
+\par
+> \f3\u-10179?\u-9023?\f6  \f5 **Project** = kumpulan pengaturan + beberapa **app** yang bekerja sama.\par
+\par
+Contoh:\par
+\par
+```\par
+Project: mysite\par
+\f6\u9500?\u9472?\u9472? \f5 App 1: polls  (fitur polling)\par
+\f6\u9500?\u9472?\u9472? \f5 App 2: blog   (fitur blog)\par
+\f6\u9500?\u9472?\u9472? \f5 App 3: users  (fitur login & registrasi)\par
+```\par
+\par
+---\par
+\par
+### \f3\u-10179?\u-8959?\f6  \f5 **Hubungan antara project dan app**\par
+\par
+* Satu **project** bisa memiliki **banyak app**.\par
+* Satu **app** juga bisa digunakan di **banyak project** (karena app bersifat modular).\par
+* App bisa disimpan **di mana saja** sepanjang masih berada di dalam **Python path**.\par
+\par
+---\par
+\par
+## **\f2\u-10178?\u-8719?\f6  \f5 Membuat Aplikasi \f6\ldblquote\f5 polls\f6\rdblquote\f5 **\par
+\par
+Dalam tutorial ini, kita akan membuat app bernama **polls** di dalam folder `djangotutorial`.\par
+\par
+Pastikan kamu berada di **folder yang sama dengan file `manage.py`**, lalu jalankan perintah berikut di terminal:\par
+\par
+```bash\par
+python manage.py startapp polls\par
+```\par
+\par
+---\par
+\par
+### Setelah dijalankan, Django akan membuat struktur folder seperti ini:\par
+\par
+```\par
+polls/\par
+    __init__.py\par
+    admin.py\par
+    apps.py\par
+    migrations/\par
+        __init__.py\par
+    models.py\par
+    tests.py\par
+    views.py\par
+```\par
+\par
+**Penjelasan singkat:**\par
+\par
+| File          | Fungsi                                                      |\par
+| ------------- | ----------------------------------------------------------- |\par
+| `__init__.py` | Menandai folder `polls` sebagai paket Python                |\par
+| `admin.py`    | Mengatur tampilan dan fungsi app di halaman admin Django    |\par
+| `apps.py`     | Konfigurasi dasar aplikasi                                  |\par
+| `migrations/` | Folder untuk menyimpan file migrasi database                |\par
+| `models.py`   | Tempat mendefinisikan struktur data (model database)        |\par
+| `tests.py`    | Tempat menulis pengujian (testing) untuk app                |\par
+| `views.py`    | Tempat menulis logika tampilan (apa yang muncul di browser) |\par
+\par
+---\par
+\par
+## **2.3.4 Menulis View Pertama**\par
+\par
+Sekarang kita akan menulis **view pertama** untuk menampilkan halaman sederhana.\par
+\par
+Buka file:\par
+\par
+```\par
+polls/views.py\par
+```\par
+\par
+Lalu tambahkan kode berikut:\par
+\par
+```python\par
+from django.http import HttpResponse\par
+\par
+def index(request):\par
+    return HttpResponse("Hello, world. You're at the polls index.")\par
+```\par
+\par
+---\par
+\par
+### \f2\u-10178?\u-8736?\f6  \f5 Penjelasan kode:\par
+\par
+* `from django.http import HttpResponse`\par
+  Mengimpor kelas `HttpResponse` yang digunakan untuk **mengirim respon ke browser**.\par
+\par
+* `def index(request):`\par
+  Membuat fungsi view bernama `index`, yang menerima **request dari browser**.\par
+\par
+* `return HttpResponse("Hello, world. You're at the polls index.")`\par
+  Mengirimkan teks sederhana sebagai **respon halaman web**.\par
+\par
+> \f3\u-10179?\u-9055?\f6  \f5 Ini adalah **view paling dasar** di Django \f6\emdash  \f5 hanya menampilkan teks sederhana di halaman web.\par
+\par
+---\par
+\par
+### \f3\u-10180?\u-8432?\f6  \f5 Menghubungkan View ke URL\par
+\par
+Agar view ini bisa diakses lewat browser, kita perlu **memetakan URL** ke fungsi view tersebut.\par
+Untuk itu, kita buat file baru bernama:\par
+\par
+```\par
+polls/urls.py\par
+```\par
+\par
+Lalu isi dengan kode berikut:\par
+\par
+```python\par
+from django.urls import path\par
+from . import views\par
+\par
+urlpatterns = [\par
+    path("", views.index, name="index"),\par
+]\par
+```\par
+\par
+---\par
+\par
+### \f3\u-10179?\u-9000?\f6  \f5 Penjelasan:\par
+\par
+* `from django.urls import path` \f6\u8594? \f5 untuk mendefinisikan pola URL.\par
+* `from . import views` \f6\u8594? \f5 mengimpor file `views.py` di app `polls`.\par
+* `urlpatterns` \f6\u8594? \f5 daftar semua URL di app ini.\par
+* `path("", views.index, name="index")` \f6\u8594? \f5 artinya jika pengguna membuka `/polls/`, maka fungsi `index` akan dijalankan.\par
+\par
+Berikut **terjemahan lengkap ke Bahasa Indonesia** beserta penjelasan rinci \f3\u-10179?\u-9145?\f5\par
+\par
+---\par
+\par
+## **Menghubungkan URL Aplikasi \f6\ldblquote\f5 polls\f6\rdblquote  \f5 ke Proyek Django**\par
+\par
+Setelah kamu membuat file `polls/urls.py`, isinya seharusnya seperti ini:\par
+\par
+### \f3\u-10179?\u-9020?\f6  \f5 **Listing 9: polls/urls.py**\par
+\par
+```python\par
+from django.urls import path\par
+from . import views\par
+\par
+urlpatterns = [\par
+    path("", views.index, name="index"),\par
+]\par
+```\par
+\par
+---\par
+\par
+### \f2\u-10178?\u-8719?\f6  \f5 **Struktur folder aplikasi \f6\ldblquote\f5 polls\f6\rdblquote  \f5 sekarang:**\par
+\par
+```\par
+polls/\par
+    __init__.py\par
+    admin.py\par
+    apps.py\par
+    migrations/\par
+        __init__.py\par
+    models.py\par
+    tests.py\par
+    urls.py\par
+    views.py\par
+```\par
+\par
+Dengan begitu, app `polls` sudah memiliki file `urls.py` sendiri yang berfungsi untuk **mengatur rute URL khusus** untuk aplikasi ini.\par
+\par
+---\par
+\par
+## **Menghubungkan App \f6\ldblquote\f5 polls\f6\rdblquote  \f5 ke Proyek Django Utama**\par
+\par
+Langkah selanjutnya adalah **mengonfigurasi URL utama proyek (`mysite/urls.py`)** agar mengenali URL dari app `polls`.\par
+\par
+Untuk itu, buka file:\par
+\par
+```\par
+mysite/urls.py\par
+```\par
+\par
+dan ubah isinya menjadi seperti ini \f3\u-10179?\u-9145?\f5\par
+\par
+---\par
+\par
+### \f3\u-10179?\u-9020?\f6  \f5 **Listing 10: mysite/urls.py**\par
+\par
+```python\par
+from django.contrib import admin\par
+from django.urls import include, path\par
+\par
+urlpatterns = [\par
+    path("polls/", include("polls.urls")),\par
+    path("admin/", admin.site.urls),\par
+]\par
+```\par
+\par
+---\par
+\par
+### \f2\u-10178?\u-8736?\f6  \f5 **Penjelasan kode:**\par
+\par
+#### 1. `from django.contrib import admin`\par
+\par
+\f3\u-10179?\u-9143?\f6  \f5 Mengimpor sistem **admin bawaan Django**, yang akan digunakan untuk halaman admin (misalnya: `http://127.0.0.1:8000/admin/`).\par
+\par
+#### 2. `from django.urls import include, path`\par
+\par
+\f3\u-10179?\u-9143?\f6  \f5 Mengimpor dua fungsi penting:\par
+\par
+* **`path()`** \f6\u8594? \f5 untuk mendefinisikan URL utama.\par
+* **`include()`** \f6\u8594? \f5 untuk **menyertakan (menghubungkan)** URL dari app lain seperti `polls`.\par
+\par
+---\par
+\par
+### \f2\u9881?\u-497?\f6  \f5 **Fungsi `path()`**\par
+\par
+Fungsi `path()` selalu membutuhkan **dua argumen utama**:\par
+\par
+1. `route` \f6\u8594? \f5 pola URL yang ingin dicocokkan (contoh: `"polls/"`)\par
+2. `view` \f6\u8594? \f5 view yang akan dijalankan saat URL tersebut diakses\par
+   (atau `include()` jika URL itu akan diteruskan ke file URL lain)\par
+\par
+---\par
+\par
+### \f2\u9881?\u-497?\f6  \f5 **Fungsi `include()`**\par
+\par
+Fungsi `include()` digunakan agar Django bisa **menghubungkan URL dari aplikasi lain**.\par
+\par
+Saat Django menemui baris:\par
+\par
+```python\par
+path("polls/", include("polls.urls")),\par
+```\par
+\par
+Artinya:\par
+\par
+* Django akan memeriksa URL yang dimulai dengan `/polls/`\par
+* Kemudian, **mengirim sisa URL-nya ke file `polls/urls.py`** untuk diproses lebih lanjut\par
+\par
+---\par
+\par
+### \f3\u-10179?\u-9055?\f6  \f5 **Inti dari `include()`**\par
+\par
+Tujuan `include()` adalah agar URL dari tiap aplikasi bisa **dipisahkan dan modular**.\par
+Jadi, kamu bisa memindahkan atau mengganti lokasi app dengan mudah.\par
+\par
+Contohnya:\par
+\par
+* `polls/urls.py` bisa dipanggil dari `/polls/`\par
+* Atau diganti menjadi `/fun_polls/`\par
+* Atau bahkan `/content/polls/`\par
+\par
+Tanpa perlu mengubah kode di dalam app `polls` itu sendiri.\par
+\par
+> \f2\u-10178?\u-8727?\f6  \f5 Inilah konsep \f6\ldblquote\f5 plug-and-play\f6\rdblquote  \f5 Django \f6\emdash  \f5 setiap app bisa berdiri sendiri dan dihubungkan ke project apa pun dengan mudah.\par
+\par
+---\par
+\par
+### \f7\u9989?\f6  \f5 **Langkah Uji Coba**\par
+\par
+Sekarang coba jalankan kembali server Django:\par
+\par
+```bash\par
+python manage.py runserver\par
+```\par
+\par
+Lalu buka di browser:\par
+\par
+```\par
+http://127.0.0.1:8000/polls/\par
+```\par
+\par
+Jika semuanya benar, kamu akan melihat tulisan:\par
+\par
+> **Hello, world. You're at the polls index.**\par
+\par
+\f3\u-10180?\u-8311?\f6  \f5 Selamat! Kamu baru saja:\par
+\par
+* Membuat app pertama di Django (`polls`)\par
+* Menulis view pertama\par
+* Menghubungkan URL app ke project utama\f0\lang9\par
+}
+ 
