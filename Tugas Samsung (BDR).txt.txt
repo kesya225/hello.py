@@ -1,0 +1,83 @@
+﻿Tugas Samsung (BDR)
+
+
+Nama: Kesya syafina putri
+Kelas: XI TKJ A
+Absen : 15
+
+
+Soal 
+1.apa perbedaan file system Linux dan Windows?
+Jawab:
+1.Perbedaan utama sistem file Windows dan Linux terletak pada case sensitivity (sensitivitas huruf besar/kecil), struktur direktori, sistem izin, dan jenis file system yang digunakan.
+
+
+
+
+2.berikan gambar struktur file system Linux dan Windows?
+Jawab: 
+1. Struktur file system linux 
+/
+├── bin      → Program biner (perintah dasar)
+├── boot     → File booting sistem
+├── dev      → File perangkat (device)
+├── etc      → File konfigurasi sistem
+├── home     → Folder pengguna
+├── lib      → Library sistem
+├── tmp      → File sementara
+├── usr      → Aplikasi & library tambahan
+└── var      → File log, cache, data variabel
+
+
+2. Struktur file system windows 
+C:\
+├── Program Files     → Aplikasi yang terinstal
+├── Users             → Folder pengguna (Documents, Downloads, dll)
+├── Windows           → File sistem operasi
+├── Temp              → File sementara
+└── System32          → File sistem inti
+
+
+
+
+3.apa yang dimaksud direktori,folder,dan file?
+   Jawab :
+ 3.  Direktori : alamat file/folder
+      Folder: didalemanya ada file lagi
+      File: berisi teks ataupun gambar
+
+
+
+
+4.sebutkan 5 file extension dan jelaskan?
+   Jawab:
+. 4. Sebutkan 5 file extension dan jelaskan!
+.txt        : File teks biasa yang berisi tulisan tanpa format.
+.docx        : File dokumen Microsoft Word.
+.jpg / .jpeg : File gambar atau foto dengan format kompresi tinggi.
+.pdf        : File dokumen digital yang tidak mudah diubah (Portable Document Format).
+.exe        : File program/aplikasi yang bisa dijalankan di windows (executable).
+
+
+5.sebutkan masing-masing 5 perintah mengakses file di Linux dan windows?
+Jawab 
+5.Linux (di Terminal)
+Perintah        Fungsi
+ls        Menampilkan daftar file dan folder.
+cd        Berpindah direktori.
+cp        Menyalin file atau folder.
+mv        Memindahkan atau mengganti nama file/folder.
+rm        Menghapus file.
+
+
+Windows (di Command Prompt)
+Perintah        Fungsi
+dir        Menampilkan daftar file dan folder.
+cd        Berpindah direktori.
+copy        Menyalin file.
+move        Memindahkan atau mengganti nama file/folder.
+del        Menghapus file.
+
+
+6.apa perbedaan terminal dan command prompt?
+Jawab : Perbedaan utamanya adalah Terminal adalah aplikasi umum untuk mengakses antarmuka baris perintah yang ada di banyak sistem operasi (seperti Linux, macOS), sedangkan Command Prompt adalah program spesifik di Windows yang berfungsi sebagai shell (interpreter perintah).
